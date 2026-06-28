@@ -3,7 +3,7 @@ import {
   Droplets, Wind, Eye, Thermometer, ExternalLink, Info,
 } from 'lucide-react';
 import PageHero from '../components/PageHero';
-import { currentWeather, weekForecast, seasonalInfo, weatherSources } from '..data/weather';
+import { currentWeather, weekForecast, seasonalInfo, weatherSources } from '../data/weather';
 import styles from './Weather.module.css';
 
 const WEATHER_ICONS = { Sun, Cloud, CloudSun, CloudRain, CloudDrizzle, CloudLightning };
