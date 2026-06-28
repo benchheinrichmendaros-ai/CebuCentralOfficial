@@ -42,7 +42,7 @@ export default function Hero() {
       <div className={`container ${styles.inner}`}>
         {/* Logo placeholder */}
         <div className={styles.logoWrap} aria-hidden="true">
-          <public/logoframe.png size={20} strokeWidth={1.5} />
+          <ImageIcon size={20} strokeWidth={1.5} />
           <span>public/logoframe.png</span>
         </div>
 
