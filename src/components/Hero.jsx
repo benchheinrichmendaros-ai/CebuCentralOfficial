@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Phone, ImageIcon, MapPin } from 'lucide-react';
+import { ArrowRight, Phone, MapPin } from 'lucide-react';
 import styles from './Hero.module.css';
 
 function useLiveTime() {
@@ -41,11 +41,11 @@ export default function Hero() {
 
       <div className={`container ${styles.inner}`}>
         {/* Logo placeholder */}
-        <div className={styles.logoWrap} aria-hidden="true">
-          <ImageIcon size={20} strokeWidth={1.5} />
-          <span>public/logoframe.png</span>
-        </div>
-
+        <img
+  src="/logoframe.png"
+  alt="CebuCentral"
+  style={{ height: '60px', width: 'auto', objectFit: 'contain' }}
+/>
         {/* Badge */}
         <div className={styles.badge}>
           <MapPin size={13} strokeWidth={2.5} />
