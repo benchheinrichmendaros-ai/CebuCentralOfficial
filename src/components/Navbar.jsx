@@ -28,7 +28,7 @@ export default function Navbar() {
 
         <Link to="/" className={styles.brand} onClick={close}>
           <span className={styles.logoSlot} title="public/logo.png">
-            <ImageIcon size={15} strokeWidth={1.5} />
+            <public/logo.png size={15} strokeWidth={1.5} />
           </span>
           <span className={styles.brandName}>
             Cebu<span className={styles.accent}>Central</span>
