@@ -23,7 +23,7 @@ export default function Footer() {
         <div className={styles.brand}>
           <Link to="/" className={styles.brandLink}>
             <img
-  src="/logo.png"
+  src="/logoframe.png"
   alt="CebuCentral"
   style={{ width: '28px', height: '28px', objectFit: 'contain' }}
 />
