@@ -43,7 +43,7 @@ export default function Hero() {
         {/* Logo placeholder */}
         <div className={styles.logoWrap} aria-hidden="true">
           <ImageIcon size={20} strokeWidth={1.5} />
-          <span>Your logo here</span>
+          <span>public/logoframe.png</span>
         </div>
 
         {/* Badge */}
