@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { ImageIcon } from 'lucide-react';
 import styles from './Footer.module.css';
 
 const PAGES = [
@@ -23,9 +22,11 @@ export default function Footer() {
       <div className={`container ${styles.top}`}>
         <div className={styles.brand}>
           <Link to="/" className={styles.brandLink}>
-            <span className={styles.logoSlot}>
-              <ImageIcon size={15} strokeWidth={1.5} />
-            </span>
+            <img
+  src="/logo.png"
+  alt="CebuCentral"
+  style={{ width: '28px', height: '28px', objectFit: 'contain' }}
+/>
             <span className={styles.brandName}>
               Cebu<span className={styles.accent}>Central</span>
             </span>
