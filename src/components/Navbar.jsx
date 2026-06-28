@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, X, ImageIcon, Phone } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import styles from './Navbar.module.css';
 
 const NAV_LINKS = [
@@ -27,9 +27,11 @@ export default function Navbar() {
       <div className={`container ${styles.inner}`}>
 
         <Link to="/" className={styles.brand} onClick={close}>
-          <span className={styles.logoSlot} title="public/logo.png">
-            <ImageIcon size={15} strokeWidth={1.5} />
-          </span>
+          <img
+  src="/logo.png"
+  alt="CebuCentral"
+  style={{ width: '32px', height: '32px', objectFit: 'contain' }}
+/>
           <span className={styles.brandName}>
             Cebu<span className={styles.accent}>Central</span>
           </span>
