@@ -1,0 +1,218 @@
+export const flightRoutes = [
+  {
+    id: 'manila',
+    destination: 'Manila',
+    airport: 'Ninoy Aquino International Airport (NAIA)',
+    code: 'MNL',
+    type: 'Domestic',
+    duration: '~1 hr 20 min',
+    fareFrom: '₱1,200',
+    popular: true,
+    airlines: [
+      { name: 'Cebu Pacific',        code: '5J', bookingUrl: 'https://www.cebupacificair.com', fareFrom: '₱1,200' },
+      { name: 'Philippine Airlines', code: 'PR', bookingUrl: 'https://www.philippineairlines.com', fareFrom: '₱2,500' },
+      { name: 'AirAsia',             code: 'Z2', bookingUrl: 'https://www.airasia.com', fareFrom: '₱1,400' },
+    ],
+    tips: {
+      fromCebu: [
+        'Terminal 1 at MCIA handles most domestic flights',
+        'Arrive at least 2 hours before departure',
+        'Check-in online to save time at the airport',
+        'Shuttle and Grab available from MCIA to Manila hotels',
+      ],
+      toCebu: [
+        'Check which NAIA terminal your airline uses (1, 2, 3, or 4)',
+        'Arrives at MCIA Terminal 1 (domestic)',
+        'Grab, taxis, and MyBus available outside MCIA on arrival',
+      ],
+    },
+    note: 'Most frequent route — dozens of flights daily.',
+  },
+  {
+    id: 'davao',
+    destination: 'Davao',
+    airport: 'Francisco Bangoy International Airport',
+    code: 'DVO',
+    type: 'Domestic',
+    duration: '~1 hr 20 min',
+    fareFrom: '₱1,500',
+    popular: false,
+    airlines: [
+      { name: 'Cebu Pacific',        code: '5J', bookingUrl: 'https://www.cebupacificair.com', fareFrom: '₱1,500' },
+      { name: 'Philippine Airlines', code: 'PR', bookingUrl: 'https://www.philippineairlines.com', fareFrom: '₱2,800' },
+    ],
+    tips: {
+      fromCebu: [
+        'MCIA Terminal 1 for domestic departures',
+        'Arrive 2 hours early — security can be slow during peak',
+        'Direct flights available daily',
+      ],
+      toCebu: [
+        'Departs from Francisco Bangoy Airport, Davao',
+        'Arrives MCIA Terminal 1',
+        'Grab and metered taxis at MCIA on arrival',
+      ],
+    },
+    note: 'Much faster than the ferry option (30 hrs vs 1.5 hrs).',
+  },
+  {
+    id: 'iloilo',
+    destination: 'Iloilo',
+    airport: 'Iloilo International Airport',
+    code: 'ILO',
+    type: 'Domestic',
+    duration: '~45 min',
+    fareFrom: '₱1,000',
+    popular: false,
+    airlines: [
+      { name: 'Cebu Pacific', code: '5J', bookingUrl: 'https://www.cebupacificair.com', fareFrom: '₱1,000' },
+      { name: 'Philippine Airlines', code: 'PR', bookingUrl: 'https://www.philippineairlines.com', fareFrom: '₱2,200' },
+    ],
+    tips: {
+      fromCebu: [
+        'Short flight — one of the closest routes from Cebu',
+        'MCIA Terminal 1 for departure',
+      ],
+      toCebu: [
+        'Departs from Iloilo International Airport, Cabatuan',
+        'Arrives MCIA Terminal 1',
+      ],
+    },
+    note: 'Quick hop — often cheaper than Manila connections.',
+  },
+  {
+    id: 'kalibo',
+    destination: 'Kalibo (Boracay)',
+    airport: 'Kalibo International Airport',
+    code: 'KLO',
+    type: 'Domestic',
+    duration: '~50 min',
+    fareFrom: '₱1,200',
+    popular: true,
+    airlines: [
+      { name: 'Cebu Pacific', code: '5J', bookingUrl: 'https://www.cebupacificair.com', fareFrom: '₱1,200' },
+      { name: 'AirAsia',      code: 'Z2', bookingUrl: 'https://www.airasia.com', fareFrom: '₱1,300' },
+    ],
+    tips: {
+      fromCebu: [
+        'Kalibo is 2–3 hrs from Boracay by van + ferry — factor that in',
+        'Alternatively, fly via Manila to Caticlan (Boracay airport) for shorter transfer',
+        'Book van and ferry to Boracay in advance',
+      ],
+      toCebu: [
+        'Departs Kalibo — take van + ferry from Boracay to Kalibo first (2–3 hrs)',
+        'Arrive MCIA Terminal 1',
+      ],
+    },
+    note: 'Gateway to Boracay. Add 2–3 hrs for the van + ferry transfer.',
+  },
+  {
+    id: 'dumaguete',
+    destination: 'Dumaguete',
+    airport: 'Sibulan Airport',
+    code: 'DGT',
+    type: 'Domestic',
+    duration: '~35 min',
+    fareFrom: '₱1,100',
+    popular: false,
+    airlines: [
+      { name: 'Cebu Pacific', code: '5J', bookingUrl: 'https://www.cebupacificair.com', fareFrom: '₱1,100' },
+    ],
+    tips: {
+      fromCebu: [
+        'Short flight — alternatively, buses to Bato + ferry to Dumaguete is scenic but long',
+        'MCIA Terminal 1 for departure',
+      ],
+      toCebu: [
+        'Departs Sibulan Airport, near Dumaguete City',
+        'Arrives MCIA Terminal 1',
+      ],
+    },
+    note: 'Quick and cheap — flying beats the bus + ferry combo.',
+  },
+  {
+    id: 'singapore',
+    destination: 'Singapore',
+    airport: 'Changi Airport (SIN)',
+    code: 'SIN',
+    type: 'International',
+    duration: '~3 hrs',
+    fareFrom: '₱3,500',
+    popular: true,
+    airlines: [
+      { name: 'Cebu Pacific', code: '5J', bookingUrl: 'https://www.cebupacificair.com', fareFrom: '₱3,500' },
+      { name: 'AirAsia',      code: 'Z2', bookingUrl: 'https://www.airasia.com', fareFrom: '₱3,800' },
+      { name: 'Scoot',        code: 'TR', bookingUrl: 'https://www.flyscoot.com', fareFrom: '₱4,200' },
+    ],
+    tips: {
+      fromCebu: [
+        'MCIA Terminal 2 handles international flights',
+        'Arrive 3 hours before international departure',
+        'Bring passport — ensure it is valid for at least 6 months',
+        'Singapore visa not required for Philippine passport holders (30 days)',
+      ],
+      toCebu: [
+        'Departs Changi Airport, Singapore',
+        'Arrives MCIA Terminal 2 (international)',
+        'Immigration and customs — allow 45–60 min on arrival',
+        'Grab available from MCIA after customs clearance',
+      ],
+    },
+    note: 'Most popular international route from Cebu.',
+  },
+  {
+    id: 'hongkong',
+    destination: 'Hong Kong',
+    airport: 'Hong Kong International Airport (HKG)',
+    code: 'HKG',
+    type: 'International',
+    duration: '~2 hrs 20 min',
+    fareFrom: '₱4,000',
+    popular: false,
+    airlines: [
+      { name: 'Cebu Pacific',        code: '5J', bookingUrl: 'https://www.cebupacificair.com', fareFrom: '₱4,000' },
+      { name: 'Philippine Airlines', code: 'PR', bookingUrl: 'https://www.philippineairlines.com', fareFrom: '₱6,500' },
+      { name: 'Cathay Pacific',      code: 'CX', bookingUrl: 'https://www.cathaypacific.com', fareFrom: '₱5,500' },
+    ],
+    tips: {
+      fromCebu: [
+        'MCIA Terminal 2 — arrive 3 hours early',
+        'Passport valid for 6+ months required',
+        'Hong Kong visa-free for Philippine passport holders (14 days)',
+      ],
+      toCebu: [
+        'Departs Hong Kong International Airport',
+        'Arrives MCIA Terminal 2',
+        'Grab available after customs clearance at MCIA',
+      ],
+    },
+    note: 'Direct route — no layover required.',
+  },
+  {
+    id: 'kualalumpur',
+    destination: 'Kuala Lumpur',
+    airport: 'KLIA2 / KL International Airport',
+    code: 'KUL',
+    type: 'International',
+    duration: '~2 hrs 40 min',
+    fareFrom: '₱2,800',
+    popular: false,
+    airlines: [
+      { name: 'AirAsia',      code: 'Z2', bookingUrl: 'https://www.airasia.com', fareFrom: '₱2,800' },
+      { name: 'Cebu Pacific', code: '5J', bookingUrl: 'https://www.cebupacificair.com', fareFrom: '₱3,200' },
+    ],
+    tips: {
+      fromCebu: [
+        'MCIA Terminal 2 — arrive 3 hours before departure',
+        'Malaysia visa-free for Philippine passport holders (30 days)',
+        'AirAsia dominates this route with frequent flights',
+      ],
+      toCebu: [
+        'AirAsia usually departs from KLIA2',
+        'Arrives MCIA Terminal 2',
+        'Immigration on arrival — allow 45–60 min',
+      ],
+    },
+    note: 'Often has very cheap AirAsia promo fares.',
+  },
+];
