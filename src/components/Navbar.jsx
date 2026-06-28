@@ -27,7 +27,7 @@ export default function Navbar() {
       <div className={`container ${styles.inner}`}>
 
         <Link to="/" className={styles.brand} onClick={close}>
-          <span className={styles.logoSlot} title="Logo placeholder">
+          <span className={styles.logoSlot} title="public/logo.png">
             <ImageIcon size={15} strokeWidth={1.5} />
           </span>
           <span className={styles.brandName}>
