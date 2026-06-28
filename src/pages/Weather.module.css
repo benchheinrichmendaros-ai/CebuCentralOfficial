@@ -1,0 +1,260 @@
+.page { background: var(--surface-alt); padding: 3rem 0 5rem; }
+
+/* Notice */
+.notice {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: var(--blue-light);
+  border: 1px solid rgba(37,99,235,0.18);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  font-size: 0.875rem;
+  color: var(--blue-dark);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.notice svg { flex-shrink: 0; }
+
+/* Current conditions card */
+.currentCard {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  background: linear-gradient(135deg, #0F172A 0%, #1a2e52 100%);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem 2.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--shadow-xl);
+}
+
+.currentLeft {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.currentIconWrap {
+  width: 96px;
+  height: 96px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.currentIcon { color: rgba(255,255,255,0.92); }
+
+.currentLocation {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.currentTemp {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.currentCondition {
+  font-size: 1.125rem;
+  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+  margin-top: 0.3rem;
+}
+
+.feelsLike {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.45);
+  margin-top: 0.2rem;
+}
+
+.currentStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+}
+
+.stat { display: flex; align-items: center; gap: 0.625rem; }
+
+.statIcon { color: rgba(255,255,255,0.4); flex-shrink: 0; }
+
+.statVal {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.statLabel { font-size: 0.75rem; color: rgba(255,255,255,0.45); }
+
+/* Forecast */
+.forecastTitle {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.forecastGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.forecastCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.125rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: box-shadow var(--t-base), transform var(--t-base);
+}
+
+.forecastCard:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+.forecastDay {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.forecastIcon { color: var(--blue); }
+
+.forecastCond {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.forecastTemps { display: flex; gap: 0.4rem; align-items: baseline; }
+
+.tempHigh { font-size: 0.9375rem; font-weight: 700; color: var(--text-primary); }
+.tempLow  { font-size: 0.8125rem; color: var(--text-muted); }
+
+.rainBadge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.45rem;
+  border-radius: var(--radius-full);
+}
+.rainLow  { background: var(--green-light);  color: var(--green); }
+.rainMed  { background: var(--gold-tint);    color: var(--gold-dark); }
+.rainHigh { background: var(--blue-light);   color: var(--blue-dark); }
+
+/* Season card */
+.seasonCard {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.875rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.seasonLeft { display: flex; flex-direction: column; gap: 0.875rem; }
+
+.seasonBadge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  background: var(--gold-tint);
+  color: var(--gold-dark);
+  border: 1px solid rgba(217,119,6,0.25);
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+  width: fit-content;
+}
+
+.seasonNote { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.65; }
+
+.seasonStats { display: flex; flex-direction: column; justify-content: center; gap: 1.125rem; }
+
+.seasonStat { display: flex; flex-direction: column; gap: 0.2rem; }
+
+.seasonStatLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.seasonStatVal { font-size: 0.9375rem; font-weight: 600; color: var(--text-primary); }
+.typhoon { color: var(--red); }
+
+/* Sources */
+.sources {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.875rem;
+}
+
+.sourcesLabel {
+  font-size: 0.775rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.sourceLinks { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.sourceLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8375rem;
+  font-weight: 600;
+  color: var(--blue);
+  background: var(--blue-light);
+  border: 1px solid rgba(37,99,235,0.15);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+.sourceLink:hover { background: var(--blue); color: #fff; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .currentCard { grid-template-columns: 1fr; }
+  .forecastGrid { grid-template-columns: repeat(4, 1fr); }
+  .seasonCard { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .page { padding: 2rem 0 3.5rem; }
+  .currentCard { padding: 1.5rem; }
+  .currentTemp { font-size: 3rem; }
+  .forecastGrid { grid-template-columns: repeat(4, 1fr); overflow-x: auto; }
+}

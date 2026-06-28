@@ -1,0 +1,206 @@
+.page { background: var(--surface-alt); padding: 3rem 0 5rem; }
+
+/* 911 banner */
+.banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  background: var(--red);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem 1.625rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-red-lg);
+}
+
+.bannerIcon { color: rgba(255,255,255,0.85); flex-shrink: 0; margin-top: 1px; }
+
+.bannerText {
+  font-size: 0.9375rem;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.6;
+}
+
+.bannerNum {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 800;
+  text-decoration: underline;
+  transition: opacity var(--t-fast);
+}
+
+.bannerNum:hover { opacity: 0.8; }
+
+/* Quick dials */
+.quickDials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.875rem;
+  margin-bottom: 2rem;
+}
+
+.quickDial {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 2px solid transparent;
+  text-decoration: none;
+  transition: transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast);
+}
+
+.quickDial:hover { transform: translateY(-2px); }
+
+.dial_red   { background: var(--red-light);   color: var(--red);      }
+.dial_red:hover   { border-color: var(--red);   box-shadow: var(--shadow-red); }
+.dial_blue  { background: var(--blue-light);  color: var(--blue-dark);}
+.dial_blue:hover  { border-color: var(--blue);  box-shadow: 0 8px 24px rgba(37,99,235,0.18); }
+.dial_green { background: var(--green-light); color: var(--green-dark);}
+.dial_green:hover { border-color: var(--green); box-shadow: 0 8px 24px rgba(5,150,105,0.18); }
+
+.dialNumber {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.dialLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+/* Category grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.125rem;
+  margin-bottom: 2rem;
+}
+
+/* Card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.625rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: box-shadow var(--t-base), transform var(--t-base), border-color var(--t-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+  border-color: var(--border-hover);
+}
+
+.cardHead { display: flex; align-items: center; gap: 0.75rem; }
+
+.iconWrap {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Contacts list */
+.contacts { display: flex; flex-direction: column; gap: 0; }
+
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.contact:last-child { border-bottom: none; padding-bottom: 0; }
+
+.contactName {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  flex: 1;
+  line-height: 1.4;
+}
+
+.number {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--red);
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  transition: background var(--t-fast), border-color var(--t-fast);
+}
+
+.number:hover { background: var(--red-light); border-color: rgba(220,38,38,0.2); }
+
+.callIcon { opacity: 0.6; flex-shrink: 0; }
+
+.numberStatic {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* Bottom note */
+.bottomNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.125rem 1.375rem;
+}
+
+.noteIcon {
+  width: 32px;
+  height: 32px;
+  background: var(--red-light);
+  color: var(--red);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bottomNote p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-top: 0.4rem;
+}
+
+@media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+
+@media (max-width: 640px) {
+  .page { padding: 2rem 0 3.5rem; }
+  .quickDials { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; }
+  .dialNumber { font-size: 1.125rem; }
+}
