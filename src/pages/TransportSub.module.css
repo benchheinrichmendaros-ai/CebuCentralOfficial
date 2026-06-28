@@ -1,0 +1,539 @@
+/* ── Shared styles for all transport sub-pages ── */
+
+.page { background: var(--surface-alt); padding: 2.5rem 0 5rem; }
+
+/* Direction toggle */
+.dirToggle {
+  display: inline-flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 4px;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.dirBtn {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-full);
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color var(--t-fast), background var(--t-fast);
+  white-space: nowrap;
+}
+
+.dirBtnActive {
+  color: #fff;
+  background: var(--red);
+}
+
+/* Route grid */
+.routeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.875rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Route card */
+.routeCard {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast), transform var(--t-fast);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: left;
+  position: relative;
+}
+
+.routeCard:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.routeCardActive {
+  border-color: var(--red) !important;
+  background: var(--red-tint);
+  box-shadow: 0 0 0 3px rgba(220,38,38,0.08);
+}
+
+.popularBadge {
+  position: absolute;
+  top: -1px;
+  right: 12px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--gold);
+  padding: 0.2rem 0.55rem;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+
+.routeCardDest {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.routeCardMeta {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.routeCardFare {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--green);
+}
+
+/* Results panel */
+.results {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.resultsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.resultsRoute {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.routeArrow { color: var(--red); }
+
+.resultsMeta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.resultMetaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.resultMetaLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+}
+
+.resultMetaVal {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Operator cards grid */
+.operatorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.operatorCard {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.375rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: box-shadow var(--t-fast), border-color var(--t-fast);
+}
+
+.operatorCard:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-hover);
+}
+
+.operatorName {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.operatorType {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+  margin-top: -0.4rem;
+}
+
+.operatorDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.operatorDetail {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 0.4rem;
+}
+
+.operatorFare {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.bookBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--red);
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  margin-top: auto;
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+
+.bookBtn:hover {
+  background: var(--red-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-red);
+}
+
+/* Tips section inside results */
+.tipsSection { margin-top: 0.5rem; }
+
+.tipsTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.tipsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.tipDot {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 0.45rem;
+}
+
+.routeNote {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-style: italic;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  margin-top: 0.5rem;
+}
+
+/* Prompt (no route selected yet) */
+.selectPrompt {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--surface-alt);
+  border: 1px dashed var(--border-hover);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+/* Provider cards (for taxi/habal) */
+.providerGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.providerCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: box-shadow var(--t-base), transform var(--t-base);
+}
+
+.providerCard:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+.providerHeader { display: flex; align-items: center; gap: 0.75rem; }
+
+.providerDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.providerName {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.providerType {
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: -0.25rem;
+}
+
+.providerCoverage {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  background: var(--surface-alt);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.75rem;
+}
+
+.providerDesc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.prosList { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.prosItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+.prosCheck {
+  width: 16px;
+  height: 16px;
+  background: var(--green-light);
+  color: var(--green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.providerAppLinks {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+.appLinkBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  padding: 0.45rem 0.875rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: background var(--t-fast), border-color var(--t-fast);
+}
+
+.appLinkBtn:hover {
+  background: var(--bg);
+  border-color: var(--border-hover);
+}
+
+.appLinkBtnPrimary {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+}
+
+.appLinkBtnPrimary:hover {
+  background: var(--red-dark);
+  border-color: var(--red-dark);
+}
+
+/* Info box */
+.infoBox {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.375rem 1.625rem;
+  margin-bottom: 2rem;
+}
+
+.infoBoxTitle {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+/* Terminal selector */
+.terminalTabs {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.terminalTab {
+  padding: 0.625rem 1.375rem;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--t-fast);
+}
+
+.terminalTabActive {
+  background: var(--dark);
+  color: #fff;
+  border-color: var(--dark);
+}
+
+/* Bus route list */
+.busRouteList { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+
+.busRoute {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  transition: box-shadow var(--t-fast), border-color var(--t-fast);
+}
+
+.busRoute:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-hover);
+}
+
+.busRouteDest {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.busRouteMeta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.busMetaItem {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.busRouteNote {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.busFare {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--green);
+  white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .routeGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .page { padding: 2rem 0 3.5rem; }
+  .operatorGrid { grid-template-columns: 1fr; }
+  .providerGrid { grid-template-columns: 1fr; }
+  .busRoute { grid-template-columns: 1fr; }
+  .busFare { justify-self: start; }
+}
+
+@media (max-width: 640px) {
+  .routeGrid { grid-template-columns: 1fr; }
+  .results { padding: 1.375rem; }
+  .dirToggle { width: 100%; }
+  .dirBtn { flex: 1; text-align: center; }
+}
