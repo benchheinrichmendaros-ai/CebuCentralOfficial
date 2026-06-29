@@ -95,7 +95,7 @@ const [error, setError] = useState('');
 
   loadWeather();
 }, []);
-  const season = getCurrentSeason();
+  
 if (loading) {
   return (
     <>
