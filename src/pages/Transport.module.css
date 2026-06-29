@@ -84,6 +84,7 @@
 .card:hover .cardCta { gap: 0.6rem; }
 
 @media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+
 @media (max-width: 640px) {
   .page { padding: 2rem 0 3.5rem; }
   .grid { grid-template-columns: 1fr; }
