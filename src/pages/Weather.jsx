@@ -2,8 +2,9 @@ import {
   Sun, Cloud, CloudSun, CloudRain, CloudDrizzle, CloudLightning,
   Droplets, Wind, Eye, Thermometer, ExternalLink, Info,
 } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import PageHero from '../components/PageHero';
-import { currentWeather, weekForecast, seasonalInfo, weatherSources } from '../data/weather';
+import { seasonalInfo, weatherSources } from '../data/weather';
 import styles from './Weather.module.css';
 
 const WEATHER_ICONS = { Sun, Cloud, CloudSun, CloudRain, CloudDrizzle, CloudLightning };
@@ -26,7 +27,108 @@ function getCurrentSeason() {
 
 export default function Weather() {
   const season = getCurrentSeason();
+  const [currentWeather, setCurrentWeather] = useState(null);
+const [weekForecast, setWeekForecast] = useState([]);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState('');
+  useEffect(() => {
+  async function loadWeather() {
+    try {
+      const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
+      const [currentRes, forecastRes] = await Promise.all([
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=Cebu,PH&units=metric&appid=${apiKey}`),
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Cebu,PH&units=metric&appid=${apiKey}`),
+      ]);
+
+      if (!currentRes.ok || !forecastRes.ok) {
+        throw new Error('Weather request failed');
+      }
+
+      const currentData = await currentRes.json();
+      const forecastData = await forecastRes.json();
+
+      setCurrentWeather({
+        location: `${currentData.name}, Philippines`,
+        condition: currentData.weather?.[0]?.description ?? 'Unknown',
+        conditionIcon: 'CloudSun',
+        tempC: Math.round(currentData.main.temp),
+        feelsLikeC: Math.round(currentData.main.feels_like),
+        humidity: currentData.main.humidity,
+        rainChancePercent: Math.round((forecastData.list?.[0]?.pop || 0) * 100),
+        windKph: Math.round((currentData.wind?.speed || 0) * 3.6),
+        uvIndex: 0,
+        uvLabel: 'N/A',
+        visibility: currentData.visibility
+          ? `${Math.round(currentData.visibility / 1000)} km`
+          : 'N/A',
+      });
+
+      const days = [];
+      const seen = new Set();
+
+      for (const item of forecastData.list || []) {
+        const date = new Date(item.dt * 1000);
+        const day = date.toLocaleDateString('en-US', { weekday: 'short' });
+        const hour = date.getHours();
+
+        if (!seen.has(day) && hour >= 11 && hour <= 13) {
+          seen.add(day);
+          days.push({
+            day,
+            condition: item.weather?.[0]?.main ?? 'Unknown',
+            icon: 'CloudSun',
+            high: Math.round(item.main.temp_max),
+            low: Math.round(item.main.temp_min),
+            rain: Math.round((item.pop || 0) * 100),
+          });
+        }
+      }
+
+      setWeekForecast(days.slice(0, 7));
+    } catch (err) {
+      setError(err.message || 'Failed to load weather');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  loadWeather();
+}, []);
+  const season = getCurrentSeason();
+if (loading) {
+  return (
+    <>
+      <PageHero
+        icon={Cloud}
+        eyebrow="Conditions"
+        title="Cebu Weather"
+        subtitle="Current conditions and a 7-day outlook. Always check PAGASA for official forecasts."
+        accent="blue"
+      />
+      <div className={styles.page}>
+        <div className="container">Loading weather...</div>
+      </div>
+    </>
+  );
+}
+
+if (error) {
+  return (
+    <>
+      <PageHero
+        icon={Cloud}
+        eyebrow="Conditions"
+        title="Cebu Weather"
+        subtitle="Current conditions and a 7-day outlook. Always check PAGASA for official forecasts."
+        accent="blue"
+      />
+      <div className={styles.page}>
+        <div className="container">{error}</div>
+      </div>
+    </>
+  );
+      }
   return (
     <>
       <PageHero
@@ -40,14 +142,6 @@ export default function Weather() {
       <div className={styles.page}>
         <div className="container">
 
-          {/* Static data notice */}
-          <div className={styles.notice}>
-            <Info size={15} />
-            <span>
-              Showing static placeholder data. Connect to the OpenWeatherMap API to display
-              live conditions — see the project README for instructions.
-            </span>
-          </div>
 
           {/* Current conditions */}
           <div className={styles.currentCard}>
