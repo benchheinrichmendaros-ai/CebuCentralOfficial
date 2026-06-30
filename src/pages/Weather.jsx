@@ -7,18 +7,33 @@ import PageHero from '../components/PageHero';
 import { seasonalInfo, weatherSources } from '../data/weather';
 import styles from './Weather.module.css';
 
-const API_KEY = import.meta.env.VITE_OPENWEATHERMAP_API_KEY;
 const WEATHER_ICONS = { Sun, Cloud, CloudSun, CloudRain, CloudDrizzle, CloudLightning };
 const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const LAT = 10.3157;
+const LON = 123.8854;
 
-function getIconName(id) {
-  if (id === 800) return 'Sun';
-  if (id === 801 || id === 802) return 'CloudSun';
-  if (id >= 803) return 'Cloud';
-  if (id >= 500 && id < 600) return 'CloudRain';
-  if (id >= 300 && id < 400) return 'CloudDrizzle';
-  if (id >= 200 && id < 300) return 'CloudLightning';
+// Open-Meteo uses WMO weather codes
+function getIconName(code) {
+  if (code === 0) return 'Sun';
+  if (code === 1 || code === 2) return 'CloudSun';
+  if (code === 3) return 'Cloud';
+  if (code >= 51 && code <= 67) return 'CloudDrizzle';
+  if (code >= 80 && code <= 82) return 'CloudRain';
+  if (code >= 95) return 'CloudLightning';
+  if (code >= 61 && code <= 65) return 'CloudRain';
   return 'Cloud';
+}
+
+function getCondition(code) {
+  const map = {
+    0: 'Clear sky', 1: 'Mostly clear', 2: 'Partly cloudy', 3: 'Overcast',
+    45: 'Foggy', 48: 'Foggy',
+    51: 'Light drizzle', 53: 'Drizzle', 55: 'Heavy drizzle',
+    61: 'Light rain', 63: 'Rain', 65: 'Heavy rain',
+    80: 'Rain showers', 81: 'Rain showers', 82: 'Violent showers',
+    95: 'Thunderstorm', 96: 'Thunderstorm w/ hail', 99: 'Severe thunderstorm',
+  };
+  return map[code] || 'Unknown';
 }
 
 function WeatherIcon({ name, size = 24, className = '' }) {
@@ -37,10 +52,6 @@ function getCurrentSeason() {
   return m >= 5 && m <= 9 ? 'Wet Season' : 'Dry Season';
 }
 
-function capitalize(str) {
-  return str.replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
 export default function Weather() {
   const season = getCurrentSeason();
   const [current, setCurrent] = useState(null);
@@ -51,54 +62,40 @@ export default function Weather() {
   useEffect(() => {
     async function fetchWeather() {
       try {
-        const [curRes, foreRes] = await Promise.all([
-          fetch(`https://api.openweathermap.org/data/2.5/weather?q=Cebu City,PH&units=metric&appid=${API_KEY}`),
-          fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Cebu City,PH&units=metric&appid=${API_KEY}`),
-        ]);
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,visibility&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FManila&forecast_days=6`;
 
-        const curData = await curRes.json();
-        const foreData = await foreRes.json();
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('Network error');
+        const data = await res.json();
 
-        // Map current weather
         setCurrent({
-          location: `${curData.name}, PH`,
-          tempC: Math.round(curData.main.temp),
-          feelsLikeC: Math.round(curData.main.feels_like),
-          condition: capitalize(curData.weather[0].description),
-          conditionIcon: getIconName(curData.weather[0].id),
-          humidity: curData.main.humidity,
-          windKph: Math.round(curData.wind.speed * 3.6),
-          visibility: `${(curData.visibility / 1000).toFixed(1)} km`,
-          rainChancePercent: Math.round((foreData.list[0]?.pop || 0) * 100),
+          location: 'Cebu City, PH',
+          tempC: Math.round(data.current.temperature_2m),
+          feelsLikeC: Math.round(data.current.apparent_temperature),
+          condition: getCondition(data.current.weather_code),
+          conditionIcon: getIconName(data.current.weather_code),
+          humidity: data.current.relative_humidity_2m,
+          windKph: Math.round(data.current.wind_speed_10m),
+          visibility: data.current.visibility
+            ? `${(data.current.visibility / 1000).toFixed(1)} km`
+            : 'N/A',
+          rainChancePercent: data.daily.precipitation_probability_max[0] ?? 0,
         });
 
-        // Group forecast list by day
-        const days = {};
-        foreData.list.forEach((item) => {
-          const date = new Date(item.dt * 1000);
-          const key = date.toDateString();
-          if (!days[key]) days[key] = { items: [], date };
-          days[key].items.push(item);
-        });
-
-        const forecastDays = Object.values(days).slice(0, 5).map(({ items, date }) => {
-          const mid = items.reduce((best, item) => {
-            const h = new Date(item.dt * 1000).getHours();
-            const bh = new Date(best.dt * 1000).getHours();
-            return Math.abs(h - 12) < Math.abs(bh - 12) ? item : best;
-          });
-          const temps = items.map((i) => i.main.temp);
+        const days = data.daily.time.slice(1, 6).map((dateStr, i) => {
+          const idx = i + 1;
+          const date = new Date(dateStr);
           return {
             day: DAY_NAMES[date.getDay()],
-            icon: getIconName(mid.weather[0].id),
-            condition: capitalize(mid.weather[0].description),
-            high: Math.round(Math.max(...temps)),
-            low: Math.round(Math.min(...temps)),
-            rain: Math.round((mid.pop || 0) * 100),
+            icon: getIconName(data.daily.weather_code[idx]),
+            condition: getCondition(data.daily.weather_code[idx]),
+            high: Math.round(data.daily.temperature_2m_max[idx]),
+            low: Math.round(data.daily.temperature_2m_min[idx]),
+            rain: data.daily.precipitation_probability_max[idx] ?? 0,
           };
         });
 
-        setForecast(forecastDays);
+        setForecast(days);
         setLoading(false);
       } catch (err) {
         setError('Could not load weather data. Please try again later.');
@@ -138,7 +135,6 @@ export default function Weather() {
 
           {current && (
             <>
-              {/* Current conditions */}
               <div className={styles.currentCard}>
                 <div className={styles.currentLeft}>
                   <div className={styles.currentIconWrap}>
@@ -170,7 +166,6 @@ export default function Weather() {
                 </div>
               </div>
 
-              {/* 5-day forecast */}
               {forecast.length > 0 && (
                 <>
                   <h2 className={styles.forecastTitle}>5-Day Forecast</h2>
@@ -195,7 +190,6 @@ export default function Weather() {
             </>
           )}
 
-          {/* Seasonal info */}
           <div className={styles.seasonCard}>
             <div className={styles.seasonLeft}>
               <span className={styles.seasonBadge}>{season}</span>
@@ -217,7 +211,6 @@ export default function Weather() {
             </div>
           </div>
 
-          {/* Sources */}
           <div className={styles.sources}>
             <p className={styles.sourcesLabel}>Check live conditions at</p>
             <div className={styles.sourceLinks}>
@@ -233,4 +226,4 @@ export default function Weather() {
       </div>
     </>
   );
-    }
+}
