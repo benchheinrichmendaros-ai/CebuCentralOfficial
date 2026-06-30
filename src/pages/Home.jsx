@@ -1,41 +1,14 @@
 import { Link } from 'react-router-dom';
 import { Plane, Cloud, Phone, CheckSquare, ArrowRight, Map, AlertTriangle, ExternalLink } from 'lucide-react';
 import Hero from '../components/Hero';
+import NewsSection from '../components/NewsSection';
 import styles from './Home.module.css';
 
 const NAV_TILES = [
-  {
-    to: '/transport',
-    icon: Plane,
-    accent: 'blue',
-    label: 'Transportation',
-    desc: 'Flights, ferries, buses, taxis, jeepneys — every way to get around Cebu.',
-    cta: 'View transport guide',
-  },
-  {
-    to: '/weather',
-    icon: Cloud,
-    accent: 'sky',
-    label: 'Weather',
-    desc: 'Current conditions, 7-day forecast, and seasonal tips for Cebu.',
-    cta: 'Check weather',
-  },
-  {
-    to: '/emergency',
-    icon: Phone,
-    accent: 'red',
-    label: 'Emergency',
-    desc: 'Police, fire, hospitals, NDRRMC — contacts when it matters most.',
-    cta: 'View contacts',
-  },
-  {
-    to: '/before-you-go',
-    icon: CheckSquare,
-    accent: 'gold',
-    label: 'Before You Go',
-    desc: 'A quick checklist to prepare before heading anywhere in Cebu.',
-    cta: 'See checklist',
-  },
+  { to: '/transport', icon: Plane, accent: 'blue', label: 'Transportation', desc: 'Flights, ferries, buses, taxis, jeepneys — every way to get around Cebu.', cta: 'View transport guide' },
+  { to: '/weather', icon: Cloud, accent: 'sky', label: 'Weather', desc: 'Current conditions, 7-day forecast, and seasonal tips for Cebu.', cta: 'Check weather' },
+  { to: '/emergency', icon: Phone, accent: 'red', label: 'Emergency', desc: 'Police, fire, hospitals, NDRRMC — contacts when it matters most.', cta: 'View contacts' },
+  { to: '/before-you-go', icon: CheckSquare, accent: 'gold', label: 'Before You Go', desc: 'A quick checklist to prepare before heading anywhere in Cebu.', cta: 'See checklist' },
 ];
 
 const QUICK_LINKS = [
@@ -48,14 +21,12 @@ export default function Home() {
     <>
       <Hero />
 
-      {/* Navigation grid */}
       <section className={styles.navSection}>
         <div className="container">
           <div className={styles.sectionHead}>
             <p className={styles.eyebrow}>Explore</p>
             <h2 className={styles.sectionTitle}>What do you need today?</h2>
           </div>
-
           <div className={styles.navGrid}>
             {NAV_TILES.map((tile) => {
               const Icon = tile.icon;
@@ -79,7 +50,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quick external links */}
+      <NewsSection />
+
       <section className={styles.quickSection}>
         <div className="container">
           <div className={styles.quickInner}>
@@ -88,13 +60,7 @@ export default function Home() {
               {QUICK_LINKS.map((q) => {
                 const Icon = q.icon;
                 return (
-                  <a
-                    key={q.href}
-                    href={q.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.quickLink}
-                  >
+                  <a key={q.href} href={q.href} target="_blank" rel="noopener noreferrer" className={styles.quickLink}>
                     <Icon size={15} />
                     {q.label}
                     <ExternalLink size={13} className={styles.extIcon} />
@@ -107,4 +73,4 @@ export default function Home() {
       </section>
     </>
   );
-}
+    }
