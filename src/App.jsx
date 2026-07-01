@@ -7,13 +7,6 @@ import Transport from './pages/Transport';
 import Weather from './pages/Weather';
 import Emergency from './pages/Emergency';
 import BeforeYouGo from './pages/BeforeYouGo';
-import About from './pages/About';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-
-// inside <Routes>:
-<Route path="/about" element={<About />} />
-<Route path="/privacy-policy" element={<PrivacyPolicy />} />
-
 
 // Transport sub-pages
 import Ferry from './pages/transport/Ferry';
