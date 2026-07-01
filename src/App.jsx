@@ -7,6 +7,9 @@ import Transport from './pages/Transport';
 import Weather from './pages/Weather';
 import Emergency from './pages/Emergency';
 import BeforeYouGo from './pages/BeforeYouGo';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 // Transport sub-pages
 import Ferry from './pages/transport/Ferry';
@@ -34,6 +37,9 @@ export default function App() {
           <Route path="/weather"       element={<Weather />} />
           <Route path="/emergency"     element={<Emergency />} />
           <Route path="/before-you-go" element={<BeforeYouGo />} />
+          <Route path="/about"          element={<About />} />
+<Route path="/contact"        element={<Contact />} />
+<Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
       </main>
       <Footer />
