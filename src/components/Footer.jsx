@@ -1,79 +1,56 @@
 import { Link } from 'react-router-dom';
+import { Mail } from 'lucide-react';
 import styles from './Footer.module.css';
 
-const PAGES = [
-  { label: 'Home', to: '/' },
-  { label: 'Transportation', to: '/transport' },
-  { label: 'Weather', to: '/weather' },
-  { label: 'Emergency', to: '/emergency' },
-  { label: 'Before You Go', to: '/before-you-go' },
+const EXPLORE_LINKS = [
+  { to: '/transport', label: 'Transportation' },
+  { to: '/weather', label: 'Weather' },
+  { to: '/emergency', label: 'Emergency' },
+  { to: '/before-you-go', label: 'Before You Go' },
 ];
 
-const EXTERNAL = [
-  { label: 'PAGASA', href: 'https://bagong.pagasa.dost.gov.ph' },
-  { label: 'NDRRMC', href: 'https://ndrrmc.gov.ph' },
-  { label: 'Cebu City Gov', href: 'https://www.cebucity.gov.ph' },
-  { label: 'MCIA Airport', href: 'https://mactan-cebuairport.com.ph' },
+const COMPANY_LINKS = [
+  { to: '/about', label: 'About' },
+  { to: '/contact', label: 'Contact' },
+  { to: '/privacy-policy', label: 'Privacy Policy' },
 ];
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className={styles.footer}>
-      <div className={`container ${styles.top}`}>
-        <div className={styles.brand}>
-          <Link to="/" className={styles.brandLink}>
-            <img
-  src="/logoframe.png"
-  alt="CebuCentral"
-  style={{ width: '28px', height: '28px', objectFit: 'contain' }}
-/>
-            <span className={styles.brandName}>
-              Cebu<span className={styles.accent}>Central</span>
-            </span>
-          </Link>
-          <p className={styles.tagline}>
-            Your local resource hub for Cebu — transport, weather,
-            emergency contacts, and local guides in one place.
-          </p>
-          <p className={styles.disclaimer}>
-            Always verify critical information with official sources.
-            CebuCentral is a community resource, not an official government site.
-          </p>
-        </div>
-
-        <div className={styles.linkCol}>
-          <p className={styles.colLabel}>Pages</p>
-          <ul className={styles.linkList}>
-            {PAGES.map((p) => (
-              <li key={p.to}>
-                <Link to={p.to} className={styles.footerLink}>{p.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className={styles.linkCol}>
-          <p className={styles.colLabel}>Official Sources</p>
-          <ul className={styles.linkList}>
-            {EXTERNAL.map((e) => (
-              <li key={e.href}>
-                <a href={e.href} target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
-                  {e.label} ↗
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className={styles.bottom}>
-        <div className="container">
-          <div className={styles.bottomInner}>
-            <p className={styles.copy}>© {new Date().getFullYear()} CebuCentral · Version 2.0</p>
-            <p className={styles.copy}>Built for Cebu, Philippines 🇵🇭</p>
+      <div className="container">
+        <div className={styles.top}>
+          <div className={styles.brand}>
+            <img src="/logoframe.png" alt="CebuCentral" className={styles.logo} />
+            <p className={styles.tagline}>
+              Your Cebu, all in one place — transport, weather, emergency contacts, and local news.
+            </p>
           </div>
+
+          <div className={styles.col}>
+            <h3 className={styles.colTitle}>Explore</h3>
+            {EXPLORE_LINKS.map((l) => (
+              <Link key={l.to} to={l.to} className={styles.link}>{l.label}</Link>
+            ))}
+          </div>
+
+          <div className={styles.col}>
+            <h3 className={styles.colTitle}>Company</h3>
+            {COMPANY_LINKS.map((l) => (
+              <Link key={l.to} to={l.to} className={styles.link}>{l.label}</Link>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.bottom}>
+          <p className={styles.copyright}>© {year} CebuCentral. Not affiliated with any government agency.</p>
+          <a href="mailto:hello@cebucentral.example" className={styles.bottomEmail}>
+            <Mail size={13} /> hello@cebucentral.example
+          </a>
         </div>
       </div>
     </footer>
   );
-}
+    }
